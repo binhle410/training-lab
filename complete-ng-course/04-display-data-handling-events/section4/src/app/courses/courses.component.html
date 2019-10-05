@@ -1,0 +1,26 @@
+<p>courses works!</p>
+<h2>Course Details</h2>
+<div class="text-left">
+        <ul>
+                <li>Title: {{course.title}} -> uppercase: {{course.title | uppercase}}</li>
+                <li>Title: {{course.title}} -> custom pipe - summary: {{course.title | summary:15}}</li>
+                <li>Students: {{course.students}} -> decimal/number: {{course.students | number}}</li>
+                <li>Rating: {{course.rating}} -> decimal/number: {{course.rating | number: '1.1-2'}}</li>
+                <li>Price: {{course.price}} -> curency: {{course.price | currency:'AUD':true}}</li>
+                <li>Release Date: {{course.releaseDate}}</li>
+            </ul>
+            
+</div>
+<div class="mb-1">
+    <input #emailIpt type="text" [value]="email" (keyup.enter)="this.email=emailIpt.value; onKeyUpEnter($event, emailIpt.value, emailIpt)"/>
+</div>
+<div class="mb-1">
+<input [(ngModel)]="email" (keyup.enter)="onKeyUpEnter()" type="text">
+</div>
+
+<div (click)="toggleEventBubling()" class="mb-1 btn {{eventBublingDisabled?'btn-warning':''}}"
+    [class.btn-primary]="!eventBublingDisabled">Toggle Event Bubbling</div>
+<div class="text-red" *ngIf="eventBublingDisabled"><strong><code>Event Bubling has been DISABLED</code></strong></div>
+<div (click)="onDivClick()">
+    <button (click)="onSave($event)" class="btn btn-primary">Hello bootstrap</button>
+</div>
