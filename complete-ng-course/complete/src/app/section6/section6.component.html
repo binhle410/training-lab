@@ -1,0 +1,117 @@
+<div class="container">
+  <h1>section6 - Directives!</h1>
+  <h2>64. ngIf</h2>
+  <button class="btn btn-primary" (click)="onClick()">Toggle NgIf</button>
+  <div *ngIf="courses.length > 0">
+    LIST OF COURSES
+  </div>
+  <div *ngIf="courses.length == 0">
+    No courses yet
+  </div>
+  instead of implementing ngIf twice, we can use another approach similar to if-else by using ng-template
+  <h3>ng-template</h3>
+  <div *ngIf="courses.length > 0; then courseList else noCourses"></div>
+  <ng-template #courseList>LIST OF COURSES</ng-template>
+  <ng-template #noCourses>
+    No courses yet
+  </ng-template>
+
+  <h2>65. Hidden Property</h2>
+  <button class="btn btn-primary" (click)="onClick()">Toggle Hidden</button>
+  <div [hidden]="courses.length == 0">
+    LIST OF COURSES
+  </div>
+  <div [hidden]="courses.length > 0">
+    No courses yet
+  </div>
+
+  <strong><code>it's better to use ngIf since it ll remove directly from DOM tree to free up resources,
+    using hidden just hide the element and it still exists in the tree</code></strong>
+
+  <h2>66. ngSwitchCase</h2>
+  (li>a)*2 and TAB to auto generate the html structure
+  <ul class="nav nav-pills">
+    <li class="nav-item" (click)="viewMode = 'map'"><a class="nav-link" [class.active]="viewMode == 'map'" href="#">Map View</a></li>
+    <li class="nav-item" (click)="viewMode = 'list'"><a class="nav-link" [class.active]="viewMode == 'list'" href="#">List View</a></li>
+  </ul>
+
+  <div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Map View Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
+  </div>
+
+  <h2>67. ngFor</h2>
+  <h2>68. ngFor and Change Detection</h2>
+  <button class="btn btn-primary" (click)="addCourse()">Add</button>
+  <ul>
+    <li *ngFor="let course of courses; index as i; even as isEven">
+      {{i}}. {{course.name}} <span *ngIf="isEven">EVEN</span>
+      <button class="btn btn-danger" (click)="removeCourse(course)">Remove</button>
+    </li>
+  </ul>
+
+  <h2>69. ngFor and Trackby</h2>
+  <code>Even though we are dealing with the same (course) objects, Angular treats them as different objects in the memory and reconstructs the DOM</code>
+  <button class="btn btn-primary" (click)="loadCourses()">Load Courses</button>
+  <ul>
+    <li *ngFor="let course of courses; index as i; even as isEven; trackBy: trackCourse">
+      {{i}}. {{course.name}} <span *ngIf="isEven">EVEN</span>
+      <button class="btn btn-danger" (click)="removeCourse(course)">Remove</button>
+    </li>
+  </ul>
+
+  <h2>70. the leading asterisk</h2>
+  <code><br>&lt;div <strong>*ngIf="courses.length > 0; else noCourses"</strong> &gt;<br>
+    List of courses <br>
+    &lt;/div&gt;<br><br>
+
+  &lt;ng-template #noCourses &gt;<br>
+  &lt;div&gt; <br>
+  No courses <br>
+  &lt;/div&gt; <br>
+  &lt;/ng-template&gt; <br>
+  </code>
+
+  <br>
+  Whenever Angular sees a leading asterisk, it ll treat the directive like this
+  <br>
+  <code>
+    &lt;ng-template [ngIf]="courses.length > 0" &gt;<br>
+    &lt;div&gt; <br>
+    List of courses <br>
+    &lt;/div&gt; <br>
+    &lt;/ng-template&gt; <br>
+    <br>
+    &lt;ng-template #noCourses [ngIf]="!(courses.length > 0)" &gt;<br>
+    &lt;div&gt; <br>
+    No courses <br>
+    &lt;/div&gt; <br>
+    &lt;/ng-template&gt; <br>
+  </code>
+
+  <h2>71. ngClass</h2>
+  Another approach to deal with Classes
+  <button class="btn" [ngClass]="{
+  'btn-primary': isSelected,
+  'btn-danger': !isSelected
+  }"
+          (click)="toggleSelection()"
+  >Toggle</button>
+
+  <h2>72. ngStyle</h2>
+  <button [ngStyle]="{
+  'backgroundColor':isSelected?'green':'red'
+  }"
+          (click)="toggleSelection()"
+  >Toggle</button>
+
+  <h2>73. Safe Traversal Operator</h2>
+  <h3>Task: {{task.assignee?.name}}</h3>
+  <h3>Task wo/ Assignee: {{taskWithNoAssignee.assignee?.name}}</h3>
+  <h3 *ngIf="taskWithNoAssignee.assignee">Task wo/ Assignee: {{taskWithNoAssignee.assignee?.name}}</h3>
+
+  <h2>74. Custom Directives</h2>
+  <input type="text" [appInputFormat]="'lowercase'" />
+
+</div>

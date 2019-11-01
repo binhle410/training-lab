@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>section7 - Template driven forms</h1>
+  <h2>76. Building a Bootstrap Form</h2>
+  form>label+input[type='text'].form-control
+  <form>
+    <div class="form-group">
+      <label for="firstName1"></label>
+      <input id="firstName1"  type="text" class="form-control">
+    </div>
+    <div class="form-group"><label for="comment1"></label>
+      <textarea name="" id="comment1" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>77. Types of Forms</h2>
+  Template Driven Form uses directives to create controls
+  Reactive Form or Model driven form uses code to create controls
+
+  <h2>78. ngModel</h2>
+  <form>
+    <div class="form-group">
+      <label for="firstName2"></label>
+      <input class="form-control" id="firstName2" ngModel name="firstName" #firstName2="ngModel" type="text" (change)="log(firstName2)" />
+    </div>
+    <div class="form-group"><label for="comment2"></label>
+      <textarea ngModel name="comment" #comment2="ngModel" (change)="log(comment2)" id="comment2" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>79. Adding validation</h2>
+
+</div>

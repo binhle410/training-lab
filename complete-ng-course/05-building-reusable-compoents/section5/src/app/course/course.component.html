@@ -1,0 +1,13 @@
+<style>
+  .glyphicon {
+    color: blue;
+  }
+</style>
+
+<p>course works!</p>
+<fa-icon [icon]="icon" class="glyphicon" [class.glyphicon-star]="isSelected" [class.glyphicon-star-empty]="!isSelected" (click)="onClick()">
+</fa-icon>
+
+ <div>
+    <button (click)="onClick()" class="btn {{!isFavorite?'btn-info':''}}" [class.btn-primary]="isFavorite">Favourite</button>
+ </div>
