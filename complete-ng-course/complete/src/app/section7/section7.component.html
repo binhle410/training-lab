@@ -5,7 +5,7 @@
   <form>
     <div class="form-group">
       <label for="firstName1"></label>
-      <input id="firstName1"  type="text" class="form-control">
+      <input id="firstName1" type="text" class="form-control">
     </div>
     <div class="form-group"><label for="comment1"></label>
       <textarea name="" id="comment1" cols="30" rows="10"
@@ -22,7 +22,9 @@
   <form>
     <div class="form-group">
       <label for="firstName2"></label>
-      <input class="form-control" id="firstName2" ngModel name="firstName" #firstName2="ngModel" type="text" (change)="log(firstName2)" />
+      <input class="form-control" id="firstName2" ngModel name="firstName" #firstName2="ngModel" type="text"
+             (change)="log(firstName2)"/>
+
     </div>
     <div class="form-group"><label for="comment2"></label>
       <textarea ngModel name="comment" #comment2="ngModel" (change)="log(comment2)" id="comment2" cols="30" rows="10"
@@ -32,5 +34,187 @@
   </form>
 
   <h2>79. Adding validation</h2>
+  <form>
+    <div class="form-group">
+      <label for="firstName3"></label>
+      <input required="required" class="form-control" id="firstName3" ngModel name="firstName" #firstName3="ngModel"
+             type="text" (change)="log(firstName3)"/>
+      <div class="alert alert-danger" *ngIf="firstName3.touched && !firstName3.valid">First Name is required</div>
+    </div>
+    <div class="form-group"><label for="comment3"></label>
+      <textarea ngModel name="comment" #comment3="ngModel" (change)="log(comment3)" id="comment3" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>80. Specific Validation Errors</h2>
+  <form>
+    <div class="form-group">
+      <label for="firstName4"></label>
+      <input required="required" minlength="3" maxlength="10" class="form-control" id="firstName4" ngModel
+             name="firstName" #firstName4="ngModel" type="text" (change)="log(firstName4)"/>
+      <div *ngIf="firstName4.touched &&  !firstName4.valid">
+        <div class="alert alert-danger" *ngIf="firstName4.errors.required">First Name is required</div>
+        <div class="alert alert-danger" *ngIf="firstName4.errors.minlength">First Name should be
+          minimum {{firstName4.errors.minlength.requiredLength}} characters. You only
+          have {{firstName4.errors.minlength.actualLength}} characters.
+        </div>
+        <div class="alert alert-danger" *ngIf="firstName4.errors.maxlength">First Name doesn't match the pattern</div>
+      </div>
+    </div>
+    <div class="form-group"><label for="comment4"></label>
+      <textarea ngModel name="comment" #comment4="ngModel" (change)="log(comment4)" id="comment4" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>81. Styling Invalid Input Fields</h2>
+  Check .scss file for
+  <code><br>
+    .form-control.ng-invalid.ng-dirty &#123; <br>
+    border: 2px solid darkgreen; <br>
+    &#125; <br>
+  </code>
+
+  <h2>83. ngForm</h2>
+  All forms element automatically have the corresponding ngForm due to its selector <code>form:not([ngNoForm]):not([formGroup])
+</code>
+
+  <form #f5="ngForm" (ngSubmit)="onSubmit(f5)">
+    <div class="form-group">
+      <label for="firstName5"></label>
+      <input required="required" minlength="3" maxlength="10" class="form-control" id="firstName5" ngModel
+             name="firstName" #firstName5="ngModel" type="text" (change)="log(firstName5)"/>
+      <div *ngIf="firstName5.touched &&  !firstName5.valid">
+        <div class="alert alert-danger" *ngIf="firstName5.errors.required">First Name is required</div>
+        <div class="alert alert-danger" *ngIf="firstName5.errors.minlength">First Name should be
+          minimum {{firstName5.errors.minlength.requiredLength}} characters. You only
+          have {{firstName5.errors.minlength.actualLength}} characters.
+        </div>
+        <div class="alert alert-danger" *ngIf="firstName5.errors.maxlength">First Name doesn't match the pattern</div>
+      </div>
+    </div>
+    <div class="form-group"><label for="comment5"></label>
+      <textarea ngModel name="comment" #comment5="ngModel" (change)="log(comment5)" id="comment5" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>84. ngModelGroup</h2>
+  <form #f6="ngForm" (ngSubmit)="onSubmit(f6)">
+    <div ngModelGroup="contact" #contact6="ngModelGroup">
+      <div *ngIf="!contact6.valid" class="alert alert-danger">Contact is invalid</div>
+      <div class="form-group">
+        <label for="firstName6"></label>
+        <input required="required" minlength="3" maxlength="10" class="form-control" id="firstName6" ngModel
+               name="firstName" #firstName6="ngModel" type="text" (change)="log(firstName6)"/>
+        <div *ngIf="firstName6.touched &&  !firstName6.valid">
+          <div class="alert alert-danger" *ngIf="firstName6.errors.required">First Name is required</div>
+          <div class="alert alert-danger" *ngIf="firstName6.errors.minlength">First Name should be
+            minimum {{firstName6.errors.minlength.requiredLength}} characters. You only
+            have {{firstName6.errors.minlength.actualLength}} characters.
+          </div>
+          <div class="alert alert-danger" *ngIf="firstName6.errors.maxlength">First Name doesn't match the pattern</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group"><label for="comment6"></label>
+      <textarea ngModel name="comment" #comment6="ngModel" (change)="log(comment6)" id="comment6" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <h2>85. Control Classes and Directives</h2>
+  <ul>
+    <li>ngModel creates FormControl</li>
+    <li>ngForm and ngModelGroup creates FormGroup but ngForm has ngSubmit directive to handle form submission event</li>
+  </ul>
+
+  <h2>86. Disabling the Submit Button</h2>
+  <form #f7="ngForm" (ngSubmit)="onSubmit(f7)">
+    <div ngModelGroup="contact" #contact7="ngModelGroup">
+      <div *ngIf="!contact7.valid" class="alert alert-danger">Contact is invalid</div>
+      <div class="form-group">
+        <label for="firstName7"></label>
+        <input required="required" minlength="3" maxlength="10" class="form-control" id="firstName7" ngModel
+               name="firstName" #firstName7="ngModel" type="text" (change)="log(firstName7)"/>
+        <div *ngIf="firstName7.touched &&  !firstName7.valid">
+          <div class="alert alert-danger" *ngIf="firstName7.errors.required">First Name is required</div>
+          <div class="alert alert-danger" *ngIf="firstName7.errors.minlength">First Name should be
+            minimum {{firstName7.errors.minlength.requiredLength}} characters. You only
+            have {{firstName7.errors.minlength.actualLength}} characters.
+          </div>
+          <div class="alert alert-danger" *ngIf="firstName7.errors.maxlength">First Name doesn't match the pattern</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group"><label for="comment7"></label>
+      <textarea ngModel name="comment" #comment7="ngModel" (change)="log(comment7)" id="comment7" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!f7.valid">Submit</button>
+  </form>
+
+  <h2>87. Working with Checkboxes</h2>
+  <h2>88. Working with Drop-down Lists</h2>
+  <h2>89. Working with Radio Buttons</h2>
+  <form #f8="ngForm" (ngSubmit)="onSubmit(f8)">
+    <div ngModelGroup="contact" #contact8="ngModelGroup">
+      <div *ngIf="!contact8.valid" class="alert alert-danger">Contact is invalid</div>
+      <div class="form-group">
+        <label for="firstName8"></label>
+        <input required="required" minlength="3" maxlength="10" class="form-control" id="firstName8" ngModel
+               name="firstName" #firstName8="ngModel" type="text" (change)="log(firstName8)"/>
+        <div *ngIf="firstName8.touched &&  !firstName8.valid">
+          <div class="alert alert-danger" *ngIf="firstName8.errors.required">First Name is required</div>
+          <div class="alert alert-danger" *ngIf="firstName8.errors.minlength">First Name should be
+            minimum {{firstName8.errors.minlength.requiredLength}} characters. You only
+            have {{firstName8.errors.minlength.actualLength}} characters.
+          </div>
+          <div class="alert alert-danger" *ngIf="firstName8.errors.maxlength">First Name doesn't match the pattern</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group"><label for="comment8"></label>
+      <textarea ngModel name="comment" #comment8="ngModel" (change)="log(comment8)" id="comment8" cols="30" rows="10"
+                class="form-control"></textarea>
+    </div>
+
+    div.checkbox>label>input[type='checkbox']
+    <div class="checkbox">
+      <label for="">
+        <input type="checkbox" ngModel name="isSubscribed">
+        Subscribe to mailing list.
+      </label>
+    </div>
+
+    div.form-group>label[for='contactMethod']+select[id='contactMethod'].form-control
+    <div class="form-group">
+      <label for="contactMethod">Dropdown</label>
+      <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+        <option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>
+      </select>
+      <select multiple ngModel name="contactMethodB" id="contactMethodB" class="form-control">
+        <option *ngFor="let method of contactMethods" [ngValue]="method">{{method.name}}</option>
+      </select>
+    </div>
+
+    div.radio>label>input[type='radio'][name='contactMethod']
+    <div *ngFor="let method of contactMethods" class="radio">
+      <label for="">
+        <input ngModel  type="radio" name="contactMethodRadio" [value]="method.id">
+        {{method.name}}
+      </label>
+    </div>
+
+    <p>{{f8.value|json}}</p>
+    <button class="btn btn-primary" type="submit" [disabled]="!f8.valid">Submit</button>
+
+  </form>
+
 
 </div>

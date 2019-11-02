@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Section7Component implements OnInit {
 
+  contactMethods = [
+    {id: 1, name: 'Email'},
+    {id: 2, name: 'Phone'},
+  ];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form) {
+    console.log('form', form, form.value);
   }
 
   log(x){
