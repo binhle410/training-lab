@@ -1,0 +1,31 @@
+<h2>96. Asynchronous Operations</h2>
+<h2>97. Asynchronous Validators</h2>
+<h2>98. Showing a Loader Image</h2>
+<h2>99. Validating the Form Input Upon Submit</h2>
+
+<form [formGroup]="form" (ngSubmit)="login()">
+  <div *ngIf="form.errors" class="alert alert-danger">
+    Username or Password is invalid.
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      formControlName="username"
+      id="username"
+      type="text"
+      class="form-control">
+    <div *ngIf="username.touched && username.pending">Validation in progress... mosh username already exists</div>
+    <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+      <div *ngIf="username.errors.shouldBeUnique">Username should be unique</div>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input formControlName="password"
+           id="password"
+           type="text"
+           class="form-control">
+  </div>
+  <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>

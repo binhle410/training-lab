@@ -7,7 +7,14 @@ import { Section6Component } from './section6/section6.component';
 import { ComponentsComponent } from './section6/components/components.component';
 import { InputFormatDirective } from './section6/input-format.directive';
 import { Section7Component } from './section7/section7.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Section8Component } from './section8/section8.component';
+import {S8SignupFormComponent} from './section8/signup-form/signup-form.component';
+import {S8SignupFormWithValidationComponent} from './section8/signup-form-with-validation/signup-form-with-validation.component';
+import { SignupFormAsyncComponent } from './section8/signup-form-async/signup-form-async.component';
+import { SignupFormNestedFormGroupsComponent } from './section8/signup-form-nested-form-groups/signup-form-nested-form-groups.component';
+import { SignupFormFormArrayComponent } from './section8/signup-form-form-array/signup-form-form-array.component';
+import { FormBuilderComponent } from './section8/form-builder/form-builder.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +22,20 @@ import {FormsModule} from '@angular/forms';
     Section6Component,
     ComponentsComponent,
     InputFormatDirective,
-    Section7Component
+    Section7Component,
+    Section8Component,
+    S8SignupFormComponent,
+    S8SignupFormWithValidationComponent,
+    SignupFormAsyncComponent,
+    SignupFormNestedFormGroupsComponent,
+    SignupFormFormArrayComponent,
+    FormBuilderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
