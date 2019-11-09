@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -7,6 +7,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
   styleUrls: ['./form-builder.component.scss']
 })
 export class FormBuilderComponent implements OnInit {
+  formByFb: AbstractControl;
 
   form = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -17,8 +18,8 @@ export class FormBuilderComponent implements OnInit {
     topics: new FormArray([])
   });
 
-  constructor(fb: FormBuilder) {
-    fb.group({
+  constructor(public fb: FormBuilder) {
+    this.formByFb = fb.group({
       name: ['', Validators.required],
       contact: fb.group({
         email: [],

@@ -1,0 +1,67 @@
+<h2>106. Getting Data</h2>
+<ul class="list-group">
+  <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
+    <li *ngIf="i < 6" class="list-group-item">{{ (i + 1) + ". " + post.title}}</li>
+  </ng-template>
+</ul>
+<code>
+</code>
+<h2>107. Creating Data</h2>
+<input type="text" class="form-control" (keyup.enter)="createPost(title)" #title>
+<h2>108. Updating Data</h2>
+<h2>109. Deleting Data</h2>
+<ul class="list-group">
+  <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
+    <li *ngIf="post.id <= 6" class="list-group-item">
+      <button (click)="updatePost(title, post)" class="btn btn-primary btn-sm">Update</button>
+      <button (click)="deletePost(post)" class="btn btn-danger btn-sm">Delete</button>
+      {{ (post.id) + ". " + post.title}}
+    </li>
+  </ng-template>
+</ul>
+<h2>110. OnInit Interface</h2>
+<code>
+  This code below should be placed under ngOnInit since it uses httpClient Service to fetch the Resources, it should NOT be placed under constructor.
+<pre>
+  this.http.get&lt;Post[]&gt;(this.postUrl).subscribe(res => &#123;
+  this.posts = [];
+  for (let i = 0; i &lt; res.length; i++) &#123;
+  let post = new Post();
+  Object.assign(post, res[i]);
+  // let post = res[i] as Post;
+  this.posts.push(post);
+  &#125;
+  &#125;);
+</pre>
+</code>
+
+<h2>113. Handling Errors</h2>
+<h2>114. Handling Unexpected Errors</h2>
+<h2>115. Handling Expected Errors</h2>
+<ul class="list-group">
+  <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
+    <li *ngIf="post.id <= 6" class="list-group-item">
+      <button (click)="updatePost(title, post)" class="btn btn-primary btn-sm">Update</button>
+      <button (click)="deletePost(post)" class="btn btn-danger btn-sm">Delete</button>
+      {{ (post.id) + ". " + post.title}}
+    </li>
+  </ng-template>
+</ul>
+
+<h2>116. Throwing Application-specific Errors - In Progress</h2>
+<h2>117. Handling Bad Request Errors - In Progress</h2>
+<h2>118. Importing Observable Operators and Factory Methods</h2>
+----
+<h2>119. Global Error Handling</h2>
+<ul class="list-group">
+  <ng-template ngFor let-post [ngForOf]="posts" let-i="index" let-isEvent="even">
+    <li *ngIf="post.id % 2 === 1 && post.id < 6" class="list-group-item">
+      <button (click)="deletePostWithError(post)" class="btn btn-danger btn-sm">Delete with Global Error Handling</button>
+      {{ (post.id) + ". " + post.title}}
+    </li>
+  </ng-template>
+</ul>
+<h2>120. Extracting a Reusable Error Handling Method</h2>
+<h2>121. Extracting a Reusable Data Service - Let's get creative</h2>
+
+

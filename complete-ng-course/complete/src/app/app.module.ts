@@ -15,6 +15,13 @@ import { SignupFormAsyncComponent } from './section8/signup-form-async/signup-fo
 import { SignupFormNestedFormGroupsComponent } from './section8/signup-form-nested-form-groups/signup-form-nested-form-groups.component';
 import { SignupFormFormArrayComponent } from './section8/signup-form-form-array/signup-form-form-array.component';
 import { FormBuilderComponent } from './section8/form-builder/form-builder.component';
+import { Section9Component } from './section9/section9.component';
+import {HttpClientModule} from '@angular/common/http';
+import { PostsComponent } from './section9/posts/posts.component';
+import {AppErrorHandler} from './section9/posts/app-error-handler';
+
+import {ErrorHandler, Injectable} from '@angular/core';
+import { Section10Component } from './section10/section10.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +36,24 @@ import { FormBuilderComponent } from './section8/form-builder/form-builder.compo
     SignupFormAsyncComponent,
     SignupFormNestedFormGroupsComponent,
     SignupFormFormArrayComponent,
-    FormBuilderComponent
+    FormBuilderComponent,
+    Section9Component,
+    PostsComponent,
+    Section10Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
