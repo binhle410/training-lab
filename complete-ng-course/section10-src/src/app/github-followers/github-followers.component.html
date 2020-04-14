@@ -1,0 +1,50 @@
+<h2>134. Query Parameters</h2>
+<a *ngIf="!queryParamMap || queryParamMap.keys.length == 0" class="btn btn-primary" href="/followers/sample-username?page=1&order=latest">Test Query Parameters</a>
+<div *ngIf="queryParamMap">
+  QueryParamMap
+  {{queryParamMap|json}}
+  <br>
+  <code>queryParamMap.get('page') = {{queryParamMap.get('page')}}</code>
+</div>
+<h2>135. Subscribing to Multiple Observables</h2>
+<h2>136. The SwitchMap Operator</h2>
+<code>
+  <ul>
+    <li>Natural but ugly way by using nested subscribe callback.</li>
+    <li>We can use switchMap to avoid this.</li>
+  </ul>
+</code>
+<pre>
+  <code><strong>.subscribe</strong></code>(combined => &#123;
+    console.log('hey.....', combined);
+    let username = combined[0].get('username');
+    let page = combined[1].get('page');
+    this.paramMap = combined[0];
+    this.queryParamMap = combined[1];
+    console.log(combined[2]);
+
+    this.service.getAll()<code><strong>.subscribe</strong></code>(followers => this.followers = followers)
+    &#125;);
+</pre>
+<div *ngIf="paramMap">
+  ParamMap
+  {{paramMap|json}}
+  q <br>
+  <code>paramMap.get('username') = {{paramMap.get('username')}}</code>
+  <br>
+  paramMap.get('KeyNotExist') = {{paramMap.get('keyNotExist')}} (empty)
+</div>
+
+<div *ngFor="let follower of followers" class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="avatar media-object" src="{{ follower.avatar_url }}" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <a [routerLink]="['/followers', follower.login, 'with-id', follower.id]">{{ follower.login }}</a>
+    </h4>
+    <a href="follower.html_url">{{ follower.html_url }}</a>
+  </div>
+</div>
