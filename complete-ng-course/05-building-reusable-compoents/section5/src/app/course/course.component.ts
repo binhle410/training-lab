@@ -5,7 +5,6 @@ import {faStar} from '@fortawesome/free-solid-svg-icons';
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  inputs: ['isSelected']
   // encapsulation: ViewEncapsulation.Emulated // default value
 })
 export class CourseComponent implements OnInit {
@@ -17,13 +16,17 @@ export class CourseComponent implements OnInit {
   @Input('is-favorite') isFavorite = false;
   @Output() change = new EventEmitter();
 
-  isSelected: boolean;
+  @Input() isSelected: boolean;
 
   ngOnInit() {
   }
 
-  onClick() {
-    this.change.emit();
+  onIconClick() {
+    this.change.emit({newValue: this.isSelected});
     console.log('onClick called');
   }
+}
+
+export interface FavouriteChangedEventArgs {
+  newValue: boolean;
 }
